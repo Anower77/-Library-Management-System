@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 import os
 import environ
 env = environ.Env()
@@ -105,17 +106,22 @@ WSGI_APPLICATION = 'library_management.wsgi.application'
 # }
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("DB_NAME"),
-        'USER': env("DB_USER"),
-        'PASSWORD': env("DB_PASSWORD"),
-        'HOST': env("DB_HOST"),
-        'PORT': env("DB_PORT"),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': env("DB_NAME"),
+#         'USER': env("DB_USER"),
+#         'PASSWORD': env("DB_PASSWORD"),
+#         'HOST': env("DB_HOST"),
+#         'PORT': env("DB_PORT"),
+#     }
+# }
 
+DATABASES = {
+    'default' : dj_database_url.config(
+        default='postgresql://book_library_0eyt_user:YqMIfjHhQaypApLbfso4T36YsioPYnk7@dpg-ctg6farv2p9s73ckrt20-a.oregon-postgres.render.com/book_library_0eyt',
+    )
+}
 
 
 
